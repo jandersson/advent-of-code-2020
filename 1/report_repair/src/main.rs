@@ -4,14 +4,12 @@ use std::fs;
 fn main() {
     let filename = "input.txt";
 
-    let mut expenses: Vec<i32> = Vec::new();
-
-    let contents = fs::read_to_string(&filename).expect("Couldn't read the file, Christmas is canceled");
-
-    for expense in contents.lines() {
-        let expense: i32 = expense.trim().parse().expect("Bad input, not a number. Christmas canceled.");
-        expenses.push(expense);
-    }
+    let expenses: Vec<i32> = fs::read_to_string(&filename)
+                                   .expect("Could not open file. Christmas is canceled.")
+                                   .lines()
+                                   .map(|line| line.trim().parse().expect("Not a number, Christmas canceled"))
+                                   .collect();
+                                                
 
     for expense in expenses.iter() {
         let remainder = 2020 - expense;
