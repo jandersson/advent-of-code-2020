@@ -1,21 +1,17 @@
 use std::fs;
 struct Password {
-    policy_min: u8,
-    policy_max: u8,
+    policy_min: usize,
+    policy_max: usize,
     policy_letter: char,
     text: String,
 }
 fn is_password_compliant(password: &Password) -> bool {
-    let mut policy_counter = 0;
-    for c in password.text.chars() {
-        if c == password.policy_letter {
-            policy_counter += 1;
-        }
-    }
-    if policy_counter > password.policy_max || policy_counter < password.policy_min {
-        return false;
-    };
-    true
+    let policy_counter: usize = password
+        .text
+        .chars()
+        .filter(|&c| c == password.policy_letter)
+        .count();
+    policy_counter <= password.policy_max && policy_counter >= password.policy_min
 }
 
 fn is_password_still_compliant(password: &Password) -> bool {
