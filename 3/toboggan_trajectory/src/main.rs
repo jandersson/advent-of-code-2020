@@ -1,6 +1,7 @@
 use std::fs;
 
 fn count_tree_hits(mut map: Vec<Vec<char>>, x_rule: usize, y_rule: usize) -> usize {
+    // TODO: There's no need to rotate or modify the vectors at all. Calculate what the index should be.
     let mut num_trees = 0;
     let map_length = map[0].len();
 
