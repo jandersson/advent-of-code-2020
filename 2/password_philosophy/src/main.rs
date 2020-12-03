@@ -15,18 +15,8 @@ fn is_password_compliant(password: &Password) -> bool {
 }
 
 fn is_password_still_compliant(password: &Password) -> bool {
-    (password
-        .text
-        .chars()
-        .nth((password.policy_min - 1).into())
-        .unwrap()
-        == password.policy_letter)
-        ^ (password
-            .text
-            .chars()
-            .nth((password.policy_max - 1).into())
-            .unwrap()
-            == password.policy_letter)
+    (password.text.chars().nth(password.policy_min - 1).unwrap() == password.policy_letter)
+        ^ (password.text.chars().nth(password.policy_max - 1).unwrap() == password.policy_letter)
 }
 
 fn main() {
